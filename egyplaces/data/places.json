@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Al Salam Hospital",
+    "name_ar": "مستشفى السلام",
+    "category": "hospitals",
+    "governorate": "Cairo",
+    "city": "Nasr City",
+    "address": "23 Makram Ebeid St., Nasr City",
+    "image": "https://images.pexels.com/photos/3761509/pexels-photo-3761509.jpeg",
+    "rating": 4.5,
+    "phone": "+20222790000"
+  },
+  {
+    "id": 2,
+    "name": "Cairo Tower Restaurant",
+    "name_ar": "مطعم برج القاهرة",
+    "category": "restaurants",
+    "governorate": "Cairo",
+    "city": "Zamalek",
+    "address": "Cairo Tower, Zamalek",
+    "image": "https://images.pexels.com/photos/2607652/pexels-photo-2607652.jpeg",
+    "rating": 4.2,
+    "phone": "+20227365131"
+  },
+  {
+    "id": 3,
+    "name": "Seoudi Supermarket",
+    "name_ar": "سوبر ماركت السعودي",
+    "category": "supermarkets",
+    "governorate": "Giza",
+    "city": "Dokki",
+    "address": "125 Nile St., Dokki",
+    "image": "https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg",
+    "rating": 4.0,
+    "phone": "+20233376543"
+  },
+  {
+    "id": 4,
+    "name": "Royal Barber",
+    "name_ar": "صالون رويال للحلاقة",
+    "category": "barbers",
+    "governorate": "Alexandria",
+    "city": "Miami",
+    "address": "45 Corniche St., Miami",
+    "image": "https://images.pexels.com/photos/2014695/pexels-photo-2014695.jpeg",
+    "rating": 4.7,
+    "phone": "+2035487721"
+  },
+  {
+    "id": 5,
+    "name": "Felfela Restaurant",
+    "name_ar": "مطعم فلفلة",
+    "category": "restaurants",
+    "governorate": "Cairo",
+    "city": "Downtown",
+    "address": "15 Hoda Shaarawy St., Downtown",
+    "image": "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg",
+    "rating": 4.3,
+    "phone": "+20223922960"
+  },
+  {
+    "id": 6,
+    "name": "Dar El Fouad Hospital",
+    "name_ar": "مستشفى دار الفؤاد",
+    "category": "hospitals",
+    "governorate": "Giza",
+    "city": "6th of October",
+    "address": "26th of July Corridor, 6th of October",
+    "image": "https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg",
+    "rating": 4.6,
+    "phone": "+20238355555"
+  },
+  {
+    "id": 7,
+    "name": "Carrefour City Center",
+    "name_ar": "كارفور سيتي سنتر",
+    "category": "supermarkets",
+    "governorate": "Alexandria",
+    "city": "Smouha",
+    "address": "City Center Mall, Smouha",
+    "image": "https://images.pexels.com/photos/3962291/pexels-photo-3962291.jpeg",
+    "rating": 4.1,
+    "phone": "+2034270500"
+  },
+  {
+    "id": 8,
+    "name": "El Baron Barber Shop",
+    "name_ar": "صالون البارون",
+    "category": "barbers",
+    "governorate": "Cairo",
+    "city": "Heliopolis",
+    "address": "5 El Hegaz St., Heliopolis",
+    "image": "https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg",
+    "rating": 4.4,
+    "phone": "+20224185000"
+  },
+  {
+    "id": 9,
+    "name": "Abou El Sid",
+    "name_ar": "أبو السيد",
+    "category": "restaurants",
+    "governorate": "Cairo",
+    "city": "Zamalek",
+    "address": "157 26th of July St., Zamalek",
+    "image": "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg",
+    "rating": 4.5,
+    "phone": "+20227359666"
+  },
+  {
+    "id": 10,
+    "name": "Cleopatra Hospital",
+    "name_ar": "مستشفى كليوباترا",
+    "category": "hospitals",
+    "governorate": "Giza",
+    "city": "Haram",
+    "address": "23 El Marwa St., Haram",
+    "image": "https://images.pexels.com/photos/4586996/pexels-photo-4586996.jpeg",
+    "rating": 4.2,
+    "phone": "+20233845400"
+  }
+]
