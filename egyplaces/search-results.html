@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">EgyPlaces - Search Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="assets/logo-egy.png" alt="EgyPlaces Logo" class="h-10 mr-2">
+        <h1 class="text-xl font-bold text-blue-800">EgyPlaces</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleLanguage('en')" class="px-2 py-1 bg-blue-100 rounded">EN</button>
+        <button onclick="toggleLanguage('ar')" class="px-2 py-1 bg-blue-100 rounded">AR</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6" data-i18n="search_results">Search Results</h2>
+    
+    <div id="results-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Results will be populated by JavaScript -->
+    </div>
+
+    <div id="no-results" class="hidden text-center p-8">
+      <p class="text-lg" data-i18n="no_results">No results found. Try adjusting your filters.</p>
+      <button onclick="window.history.back()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+        <span data-i18n="back">Back to Search</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- WhatsApp Button -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <button class="bg-green-500 text-white rounded-full p-3 shadow-lg hover:scale-105 transition-transform whatsapp-button"
+            title="Contact Us via WhatsApp">
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </button>
+  </div>
+
+  <script src="scripts/lang.js"></script>
+  <script src="scripts/whatsapp.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const results = JSON.parse(sessionStorage.getItem('searchResults') || '[]');
+      const container = document.getElementById('results-container');
+      const noResults = document.getElementById('no-results');
+
+      if (results.length === 0) {
+        noResults.classList.remove('hidden');
+        container.classList.add('hidden');
+        return;
+      }
+
+      results.forEach(place => {
+        const lang = localStorage.getItem('lang') || 'en';
+        const name = lang === 'ar' && place.name_ar ? place.name_ar : place.name;
+        
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+        card.innerHTML = `
+          <img src="${place.image}" alt="${name}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg">${name}</h3>
+            <p class="text-gray-600 mb-2">${place.address}</p>
+            <div class="flex items-center mb-3">
+              ${Array(Math.floor(place.rating)).fill('<i class="fas fa-star text-yellow-400"></i>').join('')}
+              ${place.rating % 1 ? '<i class="fas fa-star-half-alt text-yellow-400"></i>' : ''}
+              <span class="ml-1">${place.rating}</span>
+            </div>
+            <a href="place-details.html?id=${place.id}" class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600 transition">
+              View Details
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
