@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="place_details">Place Details - EgyPlaces</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="assets/logo-egy.png" alt="EgyPlaces Logo" class="h-10 mr-2">
+        <h1 class="text-xl font-bold text-blue-800">EgyPlaces</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleLanguage('en')" class="px-2 py-1 bg-blue-100 rounded">EN</button>
+        <button onclick="toggleLanguage('ar')" class="px-2 py-1 bg-blue-100 rounded">AR</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <div id="place-details" class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- Place details will be populated by JavaScript -->
+    </div>
+  </main>
+
+  <!-- WhatsApp Button -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <button class="bg-green-500 text-white rounded-full p-3 shadow-lg hover:scale-105 transition-transform whatsapp-button"
+            title="Contact Us via WhatsApp">
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </button>
+  </div>
+
+  <script src="scripts/lang.js"></script>
+  <script src="scripts/whatsapp.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const placeId = new URLSearchParams(window.location.search).get('id');
+      const container = document.getElementById('place-details');
+      
+      try {
+        const response = await fetch('data/places.json');
+        const places = await response.json();
+        const place = places.find(p => p.id === parseInt(placeId));
+
+        if (!place) {
+          container.innerHTML = '<p class="p-8 text-center" data-i18n="place_not_found">Place not found</p>';
+          return;
+        }
+
+        const lang = localStorage.getItem('lang') || 'en';
+        const name = lang === 'ar' && place.name_ar ? place.name_ar : place.name;
+        
+        container.innerHTML = `
+          <img src="${place.image}" alt="${name}" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold mb-2">${name}</h2>
+            <div class="flex items-center mb-4">
+              ${Array(Math.floor(place.rating)).fill('<i class="fas fa-star text-yellow-400"></i>').join('')}
+              ${place.rating % 1 ? '<i class="fas fa-star-half-alt text-yellow-400"></i>' : ''}
+              <span class="ml-1">${place.rating}</span>
+            </div>
+            <div class="mb-4">
+              <h3 class="font-semibold" data-i18n="address">Address</h3>
+              <p>${place.address}</p>
+            </div>
+            <div class="mb-4">
+              <h3 class="font-semibold" data-i18n="location">Location</h3>
+              <p>${place.city}, ${place.governorate}</p>
+            </div>
+            <div class="mb-6">
+              <h3 class="font-semibold" data-i18n="contact">Contact</h3>
+              <p>${place.phone}</p>
+            </div>
+            <div class="flex space-x-4">
+              <a href="tel:${place.phone}" class="flex-1 bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600 transition">
+                <i class="fas fa-phone mr-2"></i>
+                <span data-i18n="call">Call</span>
+              </a>
+              <button onclick="window.open('https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.address)}', '_blank')" 
+                      class="flex-1 bg-green-500 text-white text-center py-2 rounded hover:bg-green-600 transition">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span data-i18n="directions">Directions</span>
+              </button>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error loading place details:', error);
+        container.innerHTML = '<p class="p-8 text-center" data-i18n="error_loading">Error loading place details</p>';
+      }
+    });
+  </script>
+</body>
+</html>
