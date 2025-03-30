@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EgyPlaces - Find Locations in Egypt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="assets/logo-egy.png" alt="EgyPlaces Logo" class="h-10 mr-2">
+        <h1 class="text-xl font-bold text-blue-800">EgyPlaces</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleLanguage('en')" class="px-2 py-1 bg-blue-100 rounded">EN</button>
+        <button onclick="toggleLanguage('ar')" class="px-2 py-1 bg-blue-100 rounded">AR</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold mb-6" data-i18n="title">Find Places in Egypt</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <select class="border p-2 rounded" name="category" data-i18n="categories">
+          <option value="all">All Categories</option>
+          <option value="restaurants" data-i18n="restaurants">Restaurants</option>
+          <option value="hospitals" data-i18n="hospitals">Hospitals</option>
+          <option value="barbers" data-i18n="barbers">Barbers</option>
+          <option value="supermarkets" data-i18n="supermarkets">Supermarkets</option>
+        </select>
+        
+        <select class="border p-2 rounded" name="governorate" data-i18n="governorate">
+          <option value="all">All Governorates</option>
+          <option value="cairo">Cairo</option>
+          <option value="alexandria">Alexandria</option>
+          <option value="giza">Giza</option>
+        </select>
+        
+        <div class="relative">
+          <input type="text" class="border p-2 rounded w-full" 
+                 placeholder="Search places in Egypt..." 
+                 data-i18n="search_placeholder">
+          <div id="instant-results" class="absolute z-10 w-full mt-1 bg-white border rounded shadow-lg hidden"></div>
+        </div>
+      </div>
+      
+      <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition" onclick="performMainSearch()">
+        <span data-i18n="search">Search</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- WhatsApp Button -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <button class="bg-green-500 text-white rounded-full p-3 shadow-lg hover:scale-105 transition-transform"
+            onclick="openWhatsApp()"
+            title="Contact Us via WhatsApp">
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </button>
+  </div>
+
+  <script src="./scripts/lang.js"></script>
+  <script src="./scripts/search.js"></script>
+  <script src="./scripts/whatsapp.js"></script>
+</body>
+</html>
